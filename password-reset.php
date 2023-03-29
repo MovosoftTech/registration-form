@@ -8,15 +8,11 @@
 
   <body>
     <div class="header">
-        <h2>Register Users</h2>
+        <h2>Reset Password</h2>
     </div>
 
-     <form method="POST" action="server.php">
+     <form action="password-reset-code.php" method="POST"
       <?php include('errors.php');?>
-      <div class="input-group">
-        <label>Username:</label>
-         <input type="text" name="username" value="" >
-      </div>
 
       <div class="input-group">
       	<label>Email:</label>
@@ -24,17 +20,7 @@
       </div>
 
       <div class="input-group">
-       <label>Password:</label>
-       <input type="password" name="password_1">
-      </div>
-
-      <div class="input-group">
-       <label> Confirm Password:</label>
-       <input type="password" name="password_2">
-      </div>
-
-      <div class="input-group">
-       <button type="submit" class="btn" name="reg_user">Register</button>
+       <button type="submit" class="btn" name="password_reset_link">send password</button>
       </div>
       <p>
          Already Registered? <a href="login.php">Sign In</a>

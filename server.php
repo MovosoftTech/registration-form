@@ -1,6 +1,6 @@
 <?php
    session_start();
-   
+
    //Define valiables
    $username = "";
    $email = "";
@@ -33,17 +33,17 @@
    	 if ($password_1 != $password_2) {
    	 	array_push($errors, "Password doesn't match");
    	 }
-     
+
 
    	 //Checking if user already exist in the db
 
-   	 $user_check = "SELECT * FROM users WHERE username ='$username' OR email ='$email' LIMIT 1";
+   	 $user_check = "SELECT * FROM new_users WHERE username ='$username' OR email ='$email' LIMIT 1";
    	 $result = mysqli_query($db,$user_check );
    	 $user = mysqli_fetch_assoc($result);
 
    	 if ($user) {
    	 	if ($user['username'] === $username) {
-   	 		array_push($errors, "Username Already exists"); 	 	
+   	 		array_push($errors, "Username Already exists");
    	 	}
 
    	 	if ($user['email'] === $email) {
@@ -58,7 +58,7 @@
    	   	$token = bin2hex(openssl_random_pseudo_bytes(20));
    	   	var_dump(bin2hex($token));
 
-   	   	$query = "INSERT INTO users(username,email,password,token) VALUES('$username', '$email', '$password','$token')";	   
+   	   	$query = "INSERT INTO new_users(username,email,password,token) VALUES('$username', '$email', '$password','$token')";
         mysqli_query($db,$query);
         $_SESSION['username'] = $username;
         $_SESSION['success'] ="You are now logged in";
@@ -66,7 +66,7 @@
    	   }
    }
 
-   //Check for Login 
+   //Check for Login
 
    if (isset($_POST['login_user'])) {
    	$username = mysqli_real_escape_string($db, $_POST['username']);
@@ -95,4 +95,17 @@
         }
    	 }
    }
+   //reset password
+  if (isset($_post['reset_password'])) {
+    $email=$_post['email'];
+    $to=$email;
+    $subject="reset password";
+    $message="click link to reset password:
+    https://example.com/resetpassword.php?
+    token=yourgeneratedtoken";
+    $headers="from: no reply@example.com"."\r\n"
+    .
+    "X-mailer:PHP/" .phpversion();
+    mail($to,$subject,$message,$headers);
+}
 ?>

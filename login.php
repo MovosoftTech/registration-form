@@ -10,8 +10,8 @@
         <div class="header">
        <h2>Login User</h2>
         </div>
-       
-        <form method="post" action="login.php">
+
+        <form method="post" action="server.php">
           <?php include('errors.php');?>
           <div class="input-group">
               <label>Username:</label>
@@ -23,12 +23,16 @@
           </div>
 
           <div class="input-group">
-            <button type="submit" class="btn" name="login_user">Login</button>
+            <button type="submit" class="btn" name="login_user">Login</button><br><br>
+          <a href="password-reset.php"> forgot your password</a>
           </div>
 
           <p>
           Not yet Registered? <a href="register.php">Sign Up</a>
           </p>
+
         </form>
+        
+
       </body>
 </html>
